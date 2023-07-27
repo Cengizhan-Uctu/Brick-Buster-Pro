@@ -10,6 +10,12 @@ public class GameControlSM : StateMachine
     [HideInInspector] public MainMenuState mainMenuState;
     [HideInInspector] public FirstShotState firstShotState;
     [HideInInspector] public MoveState moveState;
+    [HideInInspector] public LoadLevelState loadLevelState;
+
+    [Header("Brick list")]
+    
+    public GameObject brickListObj;
+    public List<GameObject> brickList=new List<GameObject>();
 
     [Header("FirstShotState")]
 
@@ -31,11 +37,12 @@ public class GameControlSM : StateMachine
         mainMenuState = new MainMenuState(this);
         firstShotState = new FirstShotState(this);
         moveState = new MoveState(this);
+        loadLevelState = new LoadLevelState(this);
 
     }
     protected override BaseState GetInitialState()
     {
-        return firstShotState;
+        return loadLevelState;
     }
 
 }

@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class SceneClickHandler : EditorWindow
 {
-    private static GameObject parentObject; // Nesnelerin ekleneceði üst GameObject
-    private static float gridCellSize = 0.5f; // Izgara hücre boyutu
-    private static float gridGap = 0.1f; // Izgara boþluðu
-    private GameObject[] prefabs; // Prefablar dizisi
-    private int selectedPrefabIndex = 0; // Seçili prefabýn indeksi
+    private static GameObject parentObject; 
+    private static float gridCellSize = 0.5f;
+    private static float gridGap = 0.1f;
+    private GameObject[] prefabs; 
+    private int selectedPrefabIndex = 0; 
 
     [MenuItem("Custom/Open Scene Click Placement Window")]
     private static void OpenWindow()
@@ -19,7 +19,7 @@ public class SceneClickHandler : EditorWindow
 
     private void LoadPrefabs()
     {
-        // Prefablarý "Resources/Prefabs" klasöründen yükle
+        
         prefabs = Resources.LoadAll<GameObject>("Prefabs");
     }
 
@@ -28,13 +28,13 @@ public class SceneClickHandler : EditorWindow
         EditorGUILayout.Space(10);
         EditorGUILayout.LabelField("Select a Prefab:");
 
-        // Prefablarý seçmek için bir Popup oluþturun
+        
         selectedPrefabIndex = EditorGUILayout.Popup(selectedPrefabIndex, GetPrefabNames());
 
         EditorGUILayout.Space(10);
         EditorGUILayout.LabelField("Set Parent Object:");
 
-        // Nesnelerin ekleneceði üst GameObject için bir ObjectField oluþturun
+        
         parentObject = (GameObject)EditorGUILayout.ObjectField(parentObject, typeof(GameObject), true);
 
         EditorGUILayout.Space(20);
@@ -65,7 +65,7 @@ public class SceneClickHandler : EditorWindow
                     float zPlane = 0f;
                     Vector3 mousePosition = ray.GetPoint((ray.origin.z - zPlane) / ray.direction.z);
 
-                    // Snap to grid
+                    
                     float snappedX = Mathf.Floor((mousePosition.x - gridGap) / gridCellSize) * gridCellSize + gridGap;
                     float snappedY = Mathf.Floor((mousePosition.y - gridGap) / gridCellSize) * gridCellSize + gridGap;
                     mousePosition = new Vector3(snappedX, snappedY, 0f);
@@ -77,7 +77,7 @@ public class SceneClickHandler : EditorWindow
                         newObject.transform.SetParent(parentObject.transform);
                     }
 
-                    newObject.name = "NewObject";
+                    
                     Selection.activeObject = newObject;
 
                     Event.current.Use();
@@ -94,8 +94,8 @@ public class SceneClickHandler : EditorWindow
     {
         if (prefabs == null)
         {
-            // Burada "Resources/Prefabs" klasöründe bulunan tüm prefablarý yüklüyoruz.
-            // Dizinini isteðinize göre düzenleyebilirsiniz.
+         
+           
             prefabs = Resources.LoadAll<GameObject>("Prefabs");
         }
 
