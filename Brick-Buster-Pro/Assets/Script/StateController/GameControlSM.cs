@@ -12,11 +12,15 @@ public class GameControlSM : StateMachine
     [HideInInspector] public MoveState moveState;
     [HideInInspector] public LoadLevelState loadLevelState;
 
-    [Header("Brick list")]
+    [Header("Load Level State")]
     
     public GameObject brickListObj;
     public List<GameObject> brickList=new List<GameObject>();
-
+    public Vector3 brickListObjFistPos;
+    public Vector3 brickListObjEndPoint;
+    public Vector3 playerEndPoint;
+   
+    
     [Header("FirstShotState")]
 
     public int totalBounce = 3;

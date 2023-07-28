@@ -1,9 +1,11 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Net;
 using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using DG.Tweening;
 
 
 
@@ -18,17 +20,18 @@ public class LoadLevelState : BaseState
         {
             gameControlSM.brickList.Add(gameControlSM.brickListObj.transform.GetChild(i).gameObject);
         }
-       
-           
+        gameControlSM.brickListObj.transform.position = gameControlSM.brickListObjFistPos;
+        gameControlSM.player.transform.position = gameControlSM.brickListObjFistPos;
+        gameControlSM.firstBall.SetActive(false);
+
+        BrickMove();
 
         
-
-        LoadBrickMove();
     }
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        if (gameControlSM.brickListObj.transform.position == gameControlSM.brickListObj.GetComponent<BrickMove>().endPoint) { changeStateToFirstSho(); }
+        
     }
 
     public override void Exit()
@@ -39,12 +42,14 @@ public class LoadLevelState : BaseState
     }
     void changeStateToFirstSho()
     {
+        gameControlSM.firstBall.SetActive(true);
         stateMachine.ChangeState(gameControlSM.firstShotState);
     }
-    private void LoadBrickMove()
+   
+
+    public void BrickMove()
     {
-        gameControlSM.brickListObj.GetComponent<BrickMove>().brickMove();
+       gameControlSM.brickListObj.transform.DOMove(gameControlSM.  brickListObjEndPoint, .9f).SetEase(Ease.OutBack);
+       gameControlSM.player.transform.DOMove(gameControlSM.playerEndPoint, .9f).SetEase(Ease.OutBack).OnComplete(() => changeStateToFirstSho());
     }
-
-
 }
