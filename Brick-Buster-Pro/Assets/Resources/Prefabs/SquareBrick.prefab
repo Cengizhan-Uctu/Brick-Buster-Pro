@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 76606298973251115}
   - component: {fileID: -8340621229422923704}
   - component: {fileID: -3133077687726698478}
+  - component: {fileID: 6801239220777370296}
   m_Layer: 0
   m_Name: SquareBrick
   m_TagString: Untagged
@@ -158,3 +159,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2, y: 2}
   m_EdgeRadius: 0
+--- !u!114 &6801239220777370296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6981817098610308013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6f390ef14e9e946ac2e59bc55c1eb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

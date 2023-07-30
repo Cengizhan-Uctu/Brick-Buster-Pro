@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GameControlSM : StateMachine
+public class GameControlSM : StateMachine, IGameController
 {
 
     [HideInInspector] public MainMenuState mainMenuState;
@@ -48,5 +48,8 @@ public class GameControlSM : StateMachine
     {
         return loadLevelState;
     }
-
+    public void RemoveBrick(GameObject brick)
+    {
+        brickList.Remove(brick);
+    }
 }

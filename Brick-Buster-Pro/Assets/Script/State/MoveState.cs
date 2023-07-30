@@ -28,10 +28,7 @@ public class MoveState : BaseState
 
         
     }
-    void changeStateToInGame()
-    {
-        //stateMachine.ChangeState(gameControlSM.inGameState);
-    }
+    
     private void MovePlayer()
     {
         if (Input.GetMouseButtonDown(0))
@@ -66,5 +63,23 @@ public class MoveState : BaseState
         float distance = Vector3.Distance(gameControlSM.player.transform.position, mousePosition);
         return distance < distanceThreshold;
     }
-
+    void CheckBrickCount()
+    {
+        if (gameControlSM.brickList.Count==0)
+        {
+            //stateMachine.ChangeState(gameControlSM.WinState);
+        }
+    }
+    void CheckCollisionCount()
+    {
+        // çarpýþma sayýsý isteninene geldiðinde özellik seçme statesine geç
+    }
+    void CheckGameOver()
+    {
+        // eðer can 0 a eþitse oyun sonu paneline git eðer deðilse atýþ yeteneðini etkinleþtir
+    }
+    void CheckPause()
+    {
+        // butona týklanýrsa pause statesine geç 
+    }
 }
