@@ -13,7 +13,7 @@ public class PlatformGunState : BaseState
     public override void Enter()
     {
         base.Enter();
-        
+        gameControlSM.player.GetComponent<PlayerController>().ActiveGun();
        // silahlarý çalýþtýr 4 saniye sonra kapat
         changeStateToInGame();
       
