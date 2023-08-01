@@ -13,7 +13,7 @@ public class FirstShotState : BaseState
     public override void Enter()
     {
         base.Enter();
-        gameControlSM.lineRenderer.positionCount = gameControlSM.totalBounce;
+        gameControlSM.lineRenderer.positionCount = gameControlSM.lineRendererTotalBounce;
     }
     public override void UpdateLogic()
     {
@@ -50,7 +50,7 @@ public class FirstShotState : BaseState
     {
         Vector2 direction = gameControlSM.BallHolder.transform.up;
         Vector2 origin = (Vector2)gameControlSM.BallHolder.transform.position + gameControlSM.lineOfset * direction;
-        for (int i = 0; i < gameControlSM.totalBounce; i++)
+        for (int i = 0; i < gameControlSM.lineRendererTotalBounce; i++)
         {
             hit = Physics2D.Raycast(origin, direction, Mathf.Infinity, gameControlSM.layerMask);
             gameControlSM.lineRenderer.SetPosition(i, origin);

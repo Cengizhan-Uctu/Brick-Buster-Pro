@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
@@ -10,25 +11,28 @@ public class MoveState : BaseState
     private GameControlSM gameControlSM;
     private bool isDragging = false;
     private Vector3 offset;
-    public MoveState(GameControlSM stateMachine) : base("MoveState", stateMachine){ gameControlSM = ((GameControlSM)stateMachine); }
+    public MoveState(GameControlSM stateMachine) : base("MoveState", stateMachine) { gameControlSM = ((GameControlSM)stateMachine); }
     public override void Enter()
     {
         base.Enter();
-       
+        gameControlSM.totalBallObjList.Add(gameControlSM.firstBall);
+        gameControlSM.bounceSlider.maxValue = gameControlSM.bounceSliderMaxValue;
     }
     public override void UpdateLogic()
     {
         base.UpdateLogic();
 
         MovePlayer();
+        CheckCollisionCount();
+
     }
     public override void Exit()
     {
         base.Exit();
 
-        
+
     }
-    
+
     private void MovePlayer()
     {
         if (Input.GetMouseButtonDown(0))
@@ -59,24 +63,32 @@ public class MoveState : BaseState
     }
     private bool IsObjectTouched(Vector3 mousePosition)
     {
-        float distanceThreshold = 0.5f; 
+        float distanceThreshold = 0.5f;
         float distance = Vector3.Distance(gameControlSM.player.transform.position, mousePosition);
         return distance < distanceThreshold;
     }
     void CheckBrickCount()
     {
-        if (gameControlSM.brickList.Count==0)
+        if (gameControlSM.brickList.Count == 0)
         {
             //stateMachine.ChangeState(gameControlSM.WinState);
         }
     }
     void CheckCollisionCount()
     {
-        // çarpýþma sayýsý isteninene geldiðinde özellik seçme statesine geç
+        if (gameControlSM.bounceNumber >= gameControlSM.bounceSliderMaxValue)
+        {
+            stateMachine.ChangeState(gameControlSM.selectionState);
+
+        }
+
     }
     void CheckGameOver()
     {
-        // eðer can 0 a eþitse oyun sonu paneline git eðer deðilse atýþ yeteneðini etkinleþtir
+        if (gameControlSM.totalBallObjList.Count<=0)
+        {
+            //game over statesine geç
+        }
     }
     void CheckPause()
     {
