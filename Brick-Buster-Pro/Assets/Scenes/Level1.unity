@@ -630,6 +630,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4271127697579402244, guid: 2706d762dc2bf9d478aaa8ee6c3efe85, type: 3}
   m_PrefabInstance: {fileID: 389888736}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &432312824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 432312826}
+  - component: {fileID: 432312825}
+  m_Layer: 0
+  m_Name: ObjectPoolBall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &432312825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432312824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e052bd951a0adb4419ae202a6a3d46a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 3336558624574284483, guid: 1fb1706a83547af44868e724a115851d, type: 3}
+  poolSize: 10
+  expandable: 1
+--- !u!4 &432312826
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432312824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 720, y: 1480, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &462289348
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2301,6 +2348,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameControlSMPrefab: {fileID: 1838070946}
+  ballObjectPoolPrefab: {fileID: 432312825}
 --- !u!1 &1145864376
 GameObject:
   m_ObjectHideFlags: 0
@@ -3400,7 +3448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceSlider: {fileID: 1638590612}
-  bounceSliderMaxValue: 10
+  bounceSliderMaxValue: 1
   bounceNumber: 0
   brickListObj: {fileID: 933754261}
   brickList: []
@@ -3410,7 +3458,7 @@ MonoBehaviour:
   lineRendererTotalBounce: 3
   lineOfset: 0.01
   firstBall: {fileID: 950649598}
-  ballForce: 10
+  ballForce: 3
   layerMask:
     serializedVersion: 2
     m_Bits: 64

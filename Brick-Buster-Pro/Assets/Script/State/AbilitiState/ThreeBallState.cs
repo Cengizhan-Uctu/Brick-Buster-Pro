@@ -3,16 +3,23 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using static UnityEditor.Progress;
 
 public class ThreeBallState : BaseState
 {
     private GameControlSM gameControlSM;
+    private int activeBallCount;
     public ThreeBallState(GameControlSM stateMachine) : base("ThreeBallState", stateMachine){ gameControlSM = ((GameControlSM)stateMachine); }
     public override void Enter()
     {
         base.Enter();
         gameControlSM.selectionPanel.SetActive(false);
-        Debug.Log("GETPOOL3BALL");
+        activeBallCount = gameControlSM.totalBallObjList.Count ;
+        for (int i = 0; i < activeBallCount; i++)
+        {
+            gameControlSM.GetBallList()[i].GetComponent<BallController>().SpawnBall(2);
+        }
+      
     }
     public override void UpdateLogic()
     {

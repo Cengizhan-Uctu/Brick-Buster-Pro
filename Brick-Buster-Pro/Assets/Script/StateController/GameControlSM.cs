@@ -33,7 +33,7 @@ public class GameControlSM : StateMachine, IGameController
     public int lineRendererTotalBounce = 3;
     public float lineOfset = .01f;
     public GameObject firstBall;
-    public float ballForce = 10;
+    public float ballForce;
     public LayerMask layerMask;
     public float minAngle = -90f;
     public float maxAngle = 90f;
@@ -75,5 +75,15 @@ public class GameControlSM : StateMachine, IGameController
         brickList.Remove(brick);
         bounceNumber++;
         bounceSlider.value = bounceNumber;
+    }
+
+    public float GetBallForce()
+    {
+       return ballForce;
+    }
+
+    public List<GameObject> GetBallList()
+    {
+        return totalBallObjList;
     }
 }
