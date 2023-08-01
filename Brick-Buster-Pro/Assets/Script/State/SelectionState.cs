@@ -20,6 +20,7 @@ public class SelectionState : BaseState
         GetCard();
         gameControlSM.threeBallBtn.onClick.AddListener(ChangeStateToTreeBall);
         gameControlSM.extensionPlatformBtn.onClick.AddListener(ChangeStateToExtensionPlatformState);
+        gameControlSM.PlatformGunBtn.onClick.AddListener(ChangeStateToExtensionPlatformState);
         //gameControlSM.startButton.onClick.AddListener(changeStateToInGame);
     }
     public override void UpdateLogic()
@@ -76,5 +77,9 @@ public class SelectionState : BaseState
     void ChangeStateToExtensionPlatformState()
     {
         stateMachine.ChangeState(gameControlSM.extensionPlatformState);
+    }
+    void ChangeStateToPlatformGunState()
+    {
+        stateMachine.ChangeState(gameControlSM.platformGunState);
     }
 }

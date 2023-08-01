@@ -14,6 +14,7 @@ public class GameControlSM : StateMachine, IGameController
     [HideInInspector] public SelectionState selectionState;
     [HideInInspector] public ThreeBallState threeBallState;
     [HideInInspector] public ExtensionPlatformState extensionPlatformState;
+    [HideInInspector] public PlatformGunState platformGunState;
 
     [Header("Bounce Slider")]
     public Slider bounceSlider;
@@ -55,6 +56,7 @@ public class GameControlSM : StateMachine, IGameController
     [Header("Special Abilities")]
     public Button threeBallBtn;
     public Button extensionPlatformBtn;
+    public Button PlatformGunBtn;
 
     private void Awake()
     {
@@ -66,6 +68,7 @@ public class GameControlSM : StateMachine, IGameController
         selectionState = new SelectionState(this);
         threeBallState = new ThreeBallState(this);
         extensionPlatformState = new ExtensionPlatformState(this);
+        platformGunState = new PlatformGunState(this);
 
     }
 

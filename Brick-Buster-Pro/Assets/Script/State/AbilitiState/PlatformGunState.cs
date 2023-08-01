@@ -5,20 +5,16 @@ using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using static UnityEditor.Progress;
 
-public class ThreeBallState : BaseState
+public class PlatformGunState : BaseState
 {
     private GameControlSM gameControlSM;
-    private int activeBallCount;
-    public ThreeBallState(GameControlSM stateMachine) : base("ThreeBallState", stateMachine){ gameControlSM = ((GameControlSM)stateMachine); }
+    
+    public PlatformGunState(GameControlSM stateMachine) : base("PlatformGunState", stateMachine){ gameControlSM = ((GameControlSM)stateMachine); }
     public override void Enter()
     {
         base.Enter();
-       
-        activeBallCount = gameControlSM.totalBallObjList.Count ;
-        for (int i = 0; i < activeBallCount; i++)
-        {
-            gameControlSM.GetBallList()[i].GetComponent<BallController>().SpawnBall(2);
-        }
+        
+       // silahlarý çalýþtýr 4 saniye sonra kapat
         changeStateToInGame();
       
     }
@@ -32,7 +28,7 @@ public class ThreeBallState : BaseState
     public override void Exit()
     {
         base.Exit();
-        gameControlSM.threeBallBtn.gameObject.SetActive(false);
+        gameControlSM.extensionPlatformBtn.gameObject.SetActive(false);
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)
         {
