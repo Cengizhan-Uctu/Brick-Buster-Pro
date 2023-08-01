@@ -15,7 +15,7 @@ public class BrickCollision : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.TryGetComponent(out BallCollision ballCollision))
+        if (collision.gameObject.TryGetComponent(out BallController ballController))
         {
             
            gameController.RemoveBrick(gameObject);
