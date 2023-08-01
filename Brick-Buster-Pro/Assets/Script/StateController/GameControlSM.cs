@@ -11,19 +11,26 @@ public class GameControlSM : StateMachine, IGameController
     [HideInInspector] public FirstShotState firstShotState;
     [HideInInspector] public MoveState moveState;
     [HideInInspector] public LoadLevelState loadLevelState;
+    [HideInInspector] public SelectionState selectionState;
+    [HideInInspector] public ThreeBallState threeBallState;
+
+    [Header("Bounce Slider")]
+    public Slider bounceSlider;
+    public int bounceSliderMaxValue;
+    public int bounceNumber;
 
     [Header("Load Level State")]
-    
+
     public GameObject brickListObj;
-    public List<GameObject> brickList=new List<GameObject>();
+    public List<GameObject> brickList = new List<GameObject>();
     public Vector3 brickListObjFistPos;
     public Vector3 brickListObjEndPoint;
     public Vector3 playerEndPoint;
-   
-    
+
+
     [Header("FirstShotState")]
 
-    public int totalBounce = 3;
+    public int lineRendererTotalBounce = 3;
     public float lineOfset = .01f;
     public GameObject firstBall;
     public float ballForce = 10;
@@ -36,14 +43,29 @@ public class GameControlSM : StateMachine, IGameController
     [Header("MoveState")]
     public float moveSpeed = 5f;
     public GameObject player;
+
+    [Header("Pause State")]
+    public List<GameObject> totalBallObjList = new List<GameObject>();
+
+    [Header("Selection State")]
+    public GameObject selectionPanel;
+    public List<GameObject> cardList = new List<GameObject>();
+    public Vector2 [] cardPoint;
+    [Header("Special Abilities")]
+    public Button threeBallBtn;
+
     private void Awake()
     {
+
         mainMenuState = new MainMenuState(this);
         firstShotState = new FirstShotState(this);
         moveState = new MoveState(this);
         loadLevelState = new LoadLevelState(this);
+        selectionState = new SelectionState(this);
+        threeBallState = new ThreeBallState(this);
 
     }
+
     protected override BaseState GetInitialState()
     {
         return loadLevelState;
@@ -51,5 +73,7 @@ public class GameControlSM : StateMachine, IGameController
     public void RemoveBrick(GameObject brick)
     {
         brickList.Remove(brick);
+        bounceNumber++;
+        bounceSlider.value = bounceNumber;
     }
 }
