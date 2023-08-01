@@ -13,6 +13,7 @@ public class GameControlSM : StateMachine, IGameController
     [HideInInspector] public LoadLevelState loadLevelState;
     [HideInInspector] public SelectionState selectionState;
     [HideInInspector] public ThreeBallState threeBallState;
+    [HideInInspector] public ExtensionPlatformState extensionPlatformState;
 
     [Header("Bounce Slider")]
     public Slider bounceSlider;
@@ -53,6 +54,7 @@ public class GameControlSM : StateMachine, IGameController
     public Vector2 [] cardPoint;
     [Header("Special Abilities")]
     public Button threeBallBtn;
+    public Button extensionPlatformBtn;
 
     private void Awake()
     {
@@ -63,6 +65,7 @@ public class GameControlSM : StateMachine, IGameController
         loadLevelState = new LoadLevelState(this);
         selectionState = new SelectionState(this);
         threeBallState = new ThreeBallState(this);
+        extensionPlatformState = new ExtensionPlatformState(this);
 
     }
 

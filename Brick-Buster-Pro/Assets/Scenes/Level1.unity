@@ -1500,7 +1500,7 @@ GameObject:
   - component: {fileID: 786205311}
   - component: {fileID: 786205313}
   m_Layer: 5
-  m_Name: TreeBallStateBtn (1)
+  m_Name: ExtensionStateBtn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3448,7 +3448,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bounceSlider: {fileID: 1638590612}
-  bounceSliderMaxValue: 1
+  bounceSliderMaxValue: 7
   bounceNumber: 0
   brickListObj: {fileID: 933754261}
   brickList: []
@@ -3485,6 +3485,7 @@ MonoBehaviour:
   - {x: 400, y: 0}
   - {x: -400, y: 0}
   threeBallBtn: {fileID: 1301239950}
+  extensionPlatformBtn: {fileID: 786205313}
 --- !u!4 &1838070947
 Transform:
   m_ObjectHideFlags: 0

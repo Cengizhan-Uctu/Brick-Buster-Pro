@@ -24,7 +24,7 @@ public class BallController : MonoBehaviour
             GameObject newBall = objectPool.GetObjectFromPool();
             gameController.GetBallList().Add(newBall);
             newBall.transform.position = transform.position;
-            Debug.Log(gameController.GetBallForce());
+            
             newBall.GetComponent<Rigidbody2D>().AddForce(transform.position * gameController.GetBallForce(), ForceMode2D.Impulse);
         }
     }
