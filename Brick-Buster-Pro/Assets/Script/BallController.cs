@@ -9,6 +9,7 @@ public class BallController : MonoBehaviour
     private Vector2 lastBallVelocity;
     private IObjectPoolBall objectPool;
     private IGameController gameController;
+    private int ballPower;
 
     [Inject]
     public void SetGameController(IObjectPoolBall objectPoolBall, IGameController gameController)
@@ -37,5 +38,14 @@ public class BallController : MonoBehaviour
     {
         if (lastBallVelocity!=Vector2.zero) { ballRigidbody2D.velocity = lastBallVelocity; }
         
+    }
+    public void StrongBall()
+    {
+        ballPower += 2;
+    }
+    public void FastAndStrongBall()
+    {
+        ballRigidbody2D.velocity *= 1.5f;
+        ballPower += 1;
     }
 }

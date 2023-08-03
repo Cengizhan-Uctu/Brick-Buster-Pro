@@ -15,6 +15,11 @@ public class GameControlSM : StateMachine, IGameController
     [HideInInspector] public ThreeBallState threeBallState;
     [HideInInspector] public ExtensionPlatformState extensionPlatformState;
     [HideInInspector] public PlatformGunState platformGunState;
+    [HideInInspector] public BigBallState bigBallState;
+    [HideInInspector] public SmallBallState smallBallState;
+    [HideInInspector] public StrongBallState strongBallState;
+    [HideInInspector] public FastAndStrongBallState fastAndStrongBallState;
+    [HideInInspector] public ActiveWallState activeWallState;
 
     [Header("Bounce Slider")]
     public Slider bounceSlider;
@@ -48,6 +53,8 @@ public class GameControlSM : StateMachine, IGameController
 
     [Header("Pause State")]
     public List<GameObject> totalBallObjList = new List<GameObject>();
+    [Header("activeWall State")]
+    public GameObject activeWall;
 
     [Header("Selection State")]
     public GameObject selectionPanel;
@@ -56,8 +63,12 @@ public class GameControlSM : StateMachine, IGameController
     [Header("Special Abilities")]
     public Button threeBallBtn;
     public Button extensionPlatformBtn;
-    public Button PlatformGunBtn;
-
+    public Button platformGunBtn;
+    public Button bigBallBtn;
+    public Button smallBallBtn;
+    public Button strongBallBtn;
+    public Button fastStrongBallBtn;
+    public Button activeBallBtn;
     private void Awake()
     {
 
@@ -69,6 +80,11 @@ public class GameControlSM : StateMachine, IGameController
         threeBallState = new ThreeBallState(this);
         extensionPlatformState = new ExtensionPlatformState(this);
         platformGunState = new PlatformGunState(this);
+        bigBallState = new BigBallState(this);
+        smallBallState = new SmallBallState(this);
+        strongBallState = new StrongBallState(this);
+        fastAndStrongBallState = new FastAndStrongBallState(this);
+        activeWallState = new ActiveWallState(this);
 
     }
 
