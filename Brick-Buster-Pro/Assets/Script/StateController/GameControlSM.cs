@@ -20,6 +20,9 @@ public class GameControlSM : StateMachine, IGameController
     [HideInInspector] public StrongBallState strongBallState;
     [HideInInspector] public FastAndStrongBallState fastAndStrongBallState;
     [HideInInspector] public ActiveWallState activeWallState;
+    [HideInInspector] public GameOverState gameOverState;
+    [HideInInspector] public NextLevelState nextLevelState;
+
 
     [Header("Bounce Slider")]
     public Slider bounceSlider;
@@ -59,7 +62,13 @@ public class GameControlSM : StateMachine, IGameController
     [Header("Selection State")]
     public GameObject selectionPanel;
     public List<GameObject> cardList = new List<GameObject>();
-    public Vector2 [] cardPoint;
+    public Vector2[] cardPoint;
+    [Header("GameOver State")]
+    public GameObject gameoverPanel;
+    public Button gameOverBtn;
+    [Header("NextLevel State")]
+    public GameObject nextLevelPanel;
+    public Button nextLevelBtn;
     [Header("Special Abilities")]
     public Button threeBallBtn;
     public Button extensionPlatformBtn;
@@ -85,7 +94,8 @@ public class GameControlSM : StateMachine, IGameController
         strongBallState = new StrongBallState(this);
         fastAndStrongBallState = new FastAndStrongBallState(this);
         activeWallState = new ActiveWallState(this);
-
+        gameOverState = new GameOverState(this);
+        nextLevelState = new NextLevelState(this);
     }
 
     protected override BaseState GetInitialState()
@@ -101,7 +111,7 @@ public class GameControlSM : StateMachine, IGameController
 
     public float GetBallForce()
     {
-       return ballForce;
+        return ballForce;
     }
 
     public List<GameObject> GetBallList()

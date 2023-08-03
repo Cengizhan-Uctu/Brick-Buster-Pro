@@ -71,7 +71,7 @@ public class MoveState : BaseState
     {
         if (gameControlSM.brickList.Count == 0)
         {
-            //stateMachine.ChangeState(gameControlSM.WinState);
+            stateMachine.ChangeState(gameControlSM.nextLevelState);
         }
     }
     void CheckCollisionCount()
@@ -87,7 +87,7 @@ public class MoveState : BaseState
     {
         if (gameControlSM.totalBallObjList.Count<=0)
         {
-            //game over statesine geç
+            stateMachine.ChangeState(gameControlSM.gameOverState);
         }
     }
     void CheckPause()

@@ -4,16 +4,16 @@ using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 
-public class GameOverState : BaseState
+public class NextLevelState : BaseState
 {
     private GameControlSM gameControlSM;
-    public GameOverState(GameControlSM stateMachine) : base("GameOverState", stateMachine){ gameControlSM = ((GameControlSM)stateMachine); }
+    public NextLevelState(GameControlSM stateMachine) : base("NextLevelState", stateMachine){ gameControlSM = ((GameControlSM)stateMachine); }
     public override void Enter()
     {
         base.Enter();
-        gameControlSM.gameoverPanel.SetActive(true);
-        gameControlSM.gameOverBtn.onClick.AddListener(changeStateToInGame);
-    
+        gameControlSM.nextLevelPanel.SetActive(true);
+        gameControlSM.nextLevelBtn.onClick.AddListener(changeStateToInGame);
+
         // Print the highest score.
     }
     public override void UpdateLogic()
@@ -32,8 +32,8 @@ public class GameOverState : BaseState
     void changeStateToInGame()
     {
         //stateMachine.ChangeState(gameControlSM.inGameState);
-        // direk diðer sahneye geçir
-        // yoksa uyarý ver
+        //sahne deðiþtir
+        // gidilen o sahne seni geri bu sahneye göndersin
     }
 
 
