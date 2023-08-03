@@ -162,3 +162,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ballRigidbody2D: {fileID: 1988789616281127235}
+  ballPower: 1

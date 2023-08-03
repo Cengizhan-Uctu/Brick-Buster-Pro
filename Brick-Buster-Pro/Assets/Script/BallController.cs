@@ -9,7 +9,7 @@ public class BallController : MonoBehaviour
     private Vector2 lastBallVelocity;
     private IObjectPoolBall objectPool;
     private IGameController gameController;
-    private int ballPower;
+    public int ballPower;
 
     [Inject]
     public void SetGameController(IObjectPoolBall objectPoolBall, IGameController gameController)

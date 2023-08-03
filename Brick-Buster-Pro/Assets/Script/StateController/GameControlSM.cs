@@ -105,8 +105,7 @@ public class GameControlSM : StateMachine, IGameController
     public void RemoveBrick(GameObject brick)
     {
         brickList.Remove(brick);
-        bounceNumber++;
-        bounceSlider.value = bounceNumber;
+       
     }
 
     public float GetBallForce()
@@ -117,5 +116,11 @@ public class GameControlSM : StateMachine, IGameController
     public List<GameObject> GetBallList()
     {
         return totalBallObjList;
+    }
+
+    public void CollisionCounter()
+    {
+        bounceNumber++;
+        bounceSlider.value = bounceNumber;
     }
 }
