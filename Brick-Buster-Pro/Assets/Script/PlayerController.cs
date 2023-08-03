@@ -2,14 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using Zenject;
+
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] float totalFireTime;
-    [SerializeField] float fireRate;
-    [SerializeField] GameObject gunObjLeft;
-    [SerializeField] GameObject gunObjRight;
-    [SerializeField] BulletObjectPool objPool;
+    [SerializeField] private float totalFireTime;
+    [SerializeField] private float fireRate;
+    [SerializeField] private GameObject gunObjLeft;
+    [SerializeField] private GameObject gunObjRight;
+    private IObjectPoolBullet objPool;
     private bool isFire = false;
+
+    [Inject]
+    public void SetGameController(IObjectPoolBullet objPool)
+    {
+        this.objPool = objPool;
+    }
     public void ActiveGun()
     {
         

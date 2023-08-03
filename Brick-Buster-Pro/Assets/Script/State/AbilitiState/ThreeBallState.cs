@@ -32,6 +32,7 @@ public class ThreeBallState : BaseState
     public override void Exit()
     {
         base.Exit();
+        
         gameControlSM.threeBallBtn.gameObject.SetActive(false);
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)
