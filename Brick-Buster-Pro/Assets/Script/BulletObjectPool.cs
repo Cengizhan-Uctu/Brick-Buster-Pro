@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BulletObjectPool : MonoBehaviour 
+public class BulletObjectPool : MonoBehaviour ,IObjectPoolBullet
 {
     public GameObject prefab;
     public int poolSize = 10;
