@@ -48,6 +48,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
 
             for (int i = 0; i < entry.poolSize; i++)
             {
+               
                 CreateObjectInPool(entry.prefab);
             }
         }
@@ -72,7 +73,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
         }
         else
         {
-           
+            
             CreateObjectInPool(prefab);
             GameObject pooledObject = objectPool[prefab].Dequeue();
             pooledObject.SetActive(true);
@@ -89,6 +90,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
         }
         else
         {
+            CheckObjectPoolContent();
             Debug.LogError("Invalid prefab. Object cannot be returned to the pool.");
         }
     }
@@ -111,6 +113,13 @@ public class ObjectPool : MonoBehaviour, IObjectPool
         else
         {
             Debug.LogError("Invalid prefab. Pool cannot be expanded.");
+        }
+    }
+    private void CheckObjectPoolContent()
+    {
+        foreach (var entry in objectPool)
+        {
+            Debug.Log("Prefab: " + entry.Key + ", Object Count: " + entry.Value.Count);
         }
     }
 }
