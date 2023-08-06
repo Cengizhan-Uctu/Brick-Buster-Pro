@@ -6,13 +6,14 @@ using Zenject;
 public class BallController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D ballRigidbody2D;
+    [SerializeField] GameObject ballPrefab;
     private Vector2 lastBallVelocity;
-    private IObjectPoolBall objectPool;
+    private IObjectPool objectPool;
     private IGameController gameController;
     public int ballPower;
 
     [Inject]
-    public void SetGameController(IObjectPoolBall objectPoolBall, IGameController gameController)
+    public void SetGameController(IObjectPool objectPoolBall, IGameController gameController)
     {
         this.objectPool = objectPoolBall;
         this.gameController = gameController;
@@ -22,7 +23,7 @@ public class BallController : MonoBehaviour
     {
         for (int i = 0; i < ballNumber; i++)
         {
-            GameObject newBall = objectPool.GetObjectFromPool();
+            GameObject newBall = objectPool.GetObjectFromPool(ballPrefab);
             gameController.GetBallList().Add(newBall);
             newBall.transform.position = transform.position;
             

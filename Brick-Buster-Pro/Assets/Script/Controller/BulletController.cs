@@ -6,10 +6,11 @@ using Zenject;
 public class BulletController : MonoBehaviour
 {
     public float speed = 5f;
-    private IObjectPoolBullet objPool;
-
+    [SerializeField] private GameObject prefabObj;
+    private IObjectPool objPool;
+    
     [Inject]
-    public void SetGameController(IObjectPoolBullet objPool)
+    public void SetGameController(IObjectPool objPool)
     {
         this.objPool = objPool;
     }
@@ -23,6 +24,6 @@ public class BulletController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         gameObject.SetActive(false);
-        objPool.ReturnObjectToPool(gameObject);
+        objPool.ReturnObjectToPool(prefabObj,gameObject);
     }
 }

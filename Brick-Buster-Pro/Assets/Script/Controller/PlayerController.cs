@@ -10,11 +10,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float fireRate;
     [SerializeField] private GameObject gunObjLeft;
     [SerializeField] private GameObject gunObjRight;
-    private IObjectPoolBullet objPool;
+    [SerializeField] private GameObject poolPrefab;
+    private IObjectPool objPool;
     private bool isFire = false;
 
     [Inject]
-    public void SetGameController(IObjectPoolBullet objPool)
+    public void SetGameController(IObjectPool objPool)
     {
         this.objPool = objPool;
     }
@@ -37,8 +38,8 @@ public class PlayerController : MonoBehaviour
        
         while (isFire == true)
         {
-            GameObject bulletLeft = objPool.GetObjectFromPool();
-            GameObject bulletRight = objPool.GetObjectFromPool();
+            GameObject bulletLeft = objPool.GetObjectFromPool(poolPrefab);
+            GameObject bulletRight = objPool.GetObjectFromPool(poolPrefab);
             bulletLeft.transform.position = gunObjLeft.transform.position;
             bulletRight.transform.position = gunObjRight.transform.position;
             yield return new WaitForSeconds(fireRate);

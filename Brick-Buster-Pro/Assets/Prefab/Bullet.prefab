@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
+  prefabObj: {fileID: 1925810251110973440}
 --- !u!61 &-7983589899278100665
 BoxCollider2D:
   m_ObjectHideFlags: 0

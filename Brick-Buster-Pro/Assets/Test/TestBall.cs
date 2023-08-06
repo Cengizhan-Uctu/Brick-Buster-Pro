@@ -9,16 +9,17 @@ public class TestBall : MonoBehaviour
     [Inject]
     public TestGameController gameController;
 
-    // Object Pool için gerekli Factory sýnýfý
-    public class Factory : PlaceholderFactory<TestBall>
+    public class FactoryTest : PlaceholderFactory<TestBall>
     {
+
     }
+
 
     private void OnEnable()
     {
         // Top oluþturulduðunda bu metot çaðrýlýr
-        Debug.Log("Ball is spawned");
-        gameController.HelloWorld();
+        //Debug.Log("Ball is spawned");
+        //gameController.HelloWorld();
     }
 
     private void OnDisable()
