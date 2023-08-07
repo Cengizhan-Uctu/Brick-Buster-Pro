@@ -8,6 +8,7 @@ public class ActiveWallControler : MonoBehaviour
     [SerializeField] float activeTime;
     public void StartActiveWall()
     {
+        gameObject.SetActive(true);
         StartCoroutine(ActiveWallTimer());
     }
     IEnumerator ActiveWallTimer()
