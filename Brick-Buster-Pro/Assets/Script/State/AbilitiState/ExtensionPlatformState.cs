@@ -2,6 +2,7 @@ using DG.Tweening;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
 using Zenject.SpaceFighter;
@@ -15,6 +16,7 @@ public class ExtensionPlatformState : BaseState
     public override void Enter()
     {
         base.Enter();
+        UnityEngine.Debug.Log("Enter ExtensionPlatformState");
         gameControlSM.player.transform.DOScaleX(gameControlSM.player.transform.localScale.x + .5f, .3f);
         changeStateToInGame();
     }
@@ -28,6 +30,7 @@ public class ExtensionPlatformState : BaseState
     public override void Exit()
     {
         base.Exit();
+        UnityEngine.Debug.Log("Exit ExtensionPlatformState");
         gameControlSM.extensionPlatformBtn.gameObject.SetActive(false); 
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)

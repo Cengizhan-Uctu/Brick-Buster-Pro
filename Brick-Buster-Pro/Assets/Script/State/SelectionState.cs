@@ -13,6 +13,7 @@ public class SelectionState : BaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Enter SelectionState");
         gameControlSM.bounceNumber = 0;
         gameControlSM.bounceSlider.value = 0;
         StopBall();
@@ -30,7 +31,8 @@ public class SelectionState : BaseState
     public override void Exit()
     {
         base.Exit();
-
+        Debug.Log("Exit SelectionState");
+        RemoveListenerBtn();
 
     }
 
@@ -117,5 +119,16 @@ public class SelectionState : BaseState
         gameControlSM.strongBallBtn.onClick.AddListener(ChangeStateToStronglBallState);
         gameControlSM.fastStrongBallBtn.onClick.AddListener(ChangeStateToFastStronglBallState);
         gameControlSM.activeBallBtn.onClick.AddListener(ChangeStateToActiveWallState);
+    }
+    void RemoveListenerBtn()
+    {
+        gameControlSM.threeBallBtn.onClick.RemoveListener(ChangeStateToTreeBall);
+        gameControlSM.extensionPlatformBtn.onClick.RemoveListener(ChangeStateToExtensionPlatformState);
+        gameControlSM.platformGunBtn.onClick.RemoveListener(ChangeStateToPlatformGunState);
+        gameControlSM.bigBallBtn.onClick.RemoveListener(ChangeStateToBiggBallState);
+        gameControlSM.smallBallBtn.onClick.RemoveListener(ChangeStateToSmallBallState);
+        gameControlSM.strongBallBtn.onClick.RemoveListener(ChangeStateToStronglBallState);
+        gameControlSM.fastStrongBallBtn.onClick.RemoveListener(ChangeStateToFastStronglBallState);
+        gameControlSM.activeBallBtn.onClick.RemoveListener(ChangeStateToActiveWallState);
     }
 }

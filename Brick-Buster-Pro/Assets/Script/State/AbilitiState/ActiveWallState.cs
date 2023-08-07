@@ -15,6 +15,7 @@ public class ActiveWallState : BaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Enter ActiveWallState");
         gameControlSM.activeWall.GetComponent<ActiveWallControler>().StartActiveWall();
         changeStateToInGame();
     }
@@ -28,6 +29,7 @@ public class ActiveWallState : BaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Exit ActiveWallState");
         gameControlSM.extensionPlatformBtn.gameObject.SetActive(false); 
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)

@@ -15,6 +15,7 @@ public class SmallBallState : BaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Enter SmallBallState");
         foreach (var item in gameControlSM.GetBallList())
         {
             item.transform.DOScale(item.transform.localScale*.8f, .3f);
@@ -32,6 +33,7 @@ public class SmallBallState : BaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Exit SmallBallState");
         gameControlSM.bigBallBtn.gameObject.SetActive(false); 
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)

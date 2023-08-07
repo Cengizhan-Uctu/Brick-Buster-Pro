@@ -13,6 +13,7 @@ public class PlatformGunState : BaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Enter PlatformGunState");
         gameControlSM.player.GetComponent<PlayerController>().ActiveGun();
        // silahlarý çalýþtýr 4 saniye sonra kapat
         changeStateToInGame();
@@ -28,6 +29,7 @@ public class PlatformGunState : BaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Exit PlatformGunState");
         gameControlSM.extensionPlatformBtn.gameObject.SetActive(false);
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)

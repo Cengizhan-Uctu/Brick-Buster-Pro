@@ -15,6 +15,7 @@ public class StrongBallState : BaseState
     public override void Enter()
     {
         base.Enter();
+        Debug.Log("Enter StrongBallState");
         foreach (var item in gameControlSM.GetBallList())
         {
             item.GetComponent<BallController>().StrongBall();
@@ -32,6 +33,7 @@ public class StrongBallState : BaseState
     public override void Exit()
     {
         base.Exit();
+        Debug.Log("Exit StrongBallState");
         gameControlSM.bigBallBtn.gameObject.SetActive(false); 
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)
