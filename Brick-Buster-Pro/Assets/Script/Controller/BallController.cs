@@ -43,7 +43,7 @@ public class BallController : MonoBehaviour
     public void KeepMoving()
     {
 
-        if (lastBallVelocity != Vector2.zero) { ballRigidbody2D.velocity = lastBallVelocity * 3; }
+        if (lastBallVelocity != Vector2.zero) { ballRigidbody2D.velocity = lastBallVelocity * gameController.GetBallForce(); }
 
     }
     public void StrongBall()

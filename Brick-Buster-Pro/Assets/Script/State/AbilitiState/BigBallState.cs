@@ -41,24 +41,13 @@ public class BigBallState : BaseState
         {
             gameControlSM.totalBallObjList[i].gameObject.GetComponent<BallController>().KeepMoving();
         }
-        SetActiveFalseBtn();
+      
 
     }
     void changeStateToInGame()
     {
         stateMachine.ChangeState(gameControlSM.moveState);
     }
-    void SetActiveFalseBtn()
-    {
-
-        gameControlSM.threeBallBtn.gameObject.SetActive(false);
-        gameControlSM.extensionPlatformBtn.gameObject.SetActive(false);
-        gameControlSM.platformGunBtn.gameObject.SetActive(false);
-        gameControlSM.bigBallBtn.gameObject.SetActive(false);
-        gameControlSM.smallBallBtn.gameObject.SetActive(false);
-        gameControlSM.strongBallBtn.gameObject.SetActive(false);
-        gameControlSM.fastStrongBallBtn.gameObject.SetActive(false);
-        gameControlSM.activeBallBtn.gameObject.SetActive(false);
-    }
+    
 
 }

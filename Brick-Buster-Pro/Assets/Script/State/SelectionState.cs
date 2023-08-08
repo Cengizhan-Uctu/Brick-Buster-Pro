@@ -16,6 +16,7 @@ public class SelectionState : BaseState
         Debug.Log("Enter SelectionState");
         gameControlSM.bounceNumber = 0;
         gameControlSM.bounceSlider.value = 0;
+        SetActiveFalseBtn();
         StopBall();
         gameControlSM.selectionPanel.SetActive(true);
         GetCard();
@@ -130,5 +131,16 @@ public class SelectionState : BaseState
         gameControlSM.strongBallBtn.onClick.RemoveListener(ChangeStateToStronglBallState);
         gameControlSM.fastStrongBallBtn.onClick.RemoveListener(ChangeStateToFastStronglBallState);
         gameControlSM.activeBallBtn.onClick.RemoveListener(ChangeStateToActiveWallState);
+    }
+    void SetActiveFalseBtn()
+    {
+        gameControlSM.threeBallBtn.gameObject.SetActive(false);
+        gameControlSM.extensionPlatformBtn.gameObject.SetActive(false);
+        gameControlSM.platformGunBtn.gameObject.SetActive(false);
+        gameControlSM.bigBallBtn.gameObject.SetActive(false);
+        gameControlSM.smallBallBtn.gameObject.SetActive(false);
+        gameControlSM.strongBallBtn.gameObject.SetActive(false);
+        gameControlSM.fastStrongBallBtn.gameObject.SetActive(false);
+        gameControlSM.activeBallBtn.gameObject.SetActive(false);
     }
 }

@@ -15,7 +15,7 @@ public class PlatformGunState : BaseState
         base.Enter();
         Debug.Log("Enter PlatformGunState");
         gameControlSM.player.GetComponent<PlayerController>().ActiveGun();
-       // silahlarý çalýþtýr 4 saniye sonra kapat
+       
         changeStateToInGame();
       
     }
