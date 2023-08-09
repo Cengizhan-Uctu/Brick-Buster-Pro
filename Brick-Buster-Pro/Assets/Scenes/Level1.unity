@@ -5490,8 +5490,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  minAngle: -90
-  maxAngle: 90
+  minAngle: 0
+  maxAngle: 180
   lineRenderer: {fileID: 1945757683}
   BallHolder: {fileID: 1945757680}
   moveSpeed: 5
