@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameOverState : BaseState
 {
@@ -14,26 +15,20 @@ public class GameOverState : BaseState
         gameControlSM.gameoverPanel.SetActive(true);
         gameControlSM.gameOverBtn.onClick.AddListener(changeStateToInGame);
     
-        // Print the highest score.
+     
     }
-    public override void UpdateLogic()
-    {
-        base.UpdateLogic();
-      
-        // do someting
-    }
+  
 
     public override void Exit()
     {
         base.Exit();
-       
-        //gameControlSM.startButton.transform.parent.gameObject.SetActive(false);
+
+        gameControlSM.gameOverBtn.onClick.RemoveListener(changeStateToInGame);
+        gameControlSM.gameoverPanel.SetActive(false);
     }
     void changeStateToInGame()
     {
-        //stateMachine.ChangeState(gameControlSM.inGameState);
-        // direk diðer sahneye geçir
-        // yoksa uyarý ver
+        SceneManager.LoadScene(0);
     }
 
 
