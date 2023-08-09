@@ -52,7 +52,8 @@ public class BallController : MonoBehaviour
     }
     public void FastAndStrongBall()
     {
-        ballRigidbody2D.velocity *= 1.5f;
+        gameController.SetBallForce();
+        ballRigidbody2D.velocity = Vector2.one*gameController.GetBallForce();
         ballPower += 1;
     }
 }

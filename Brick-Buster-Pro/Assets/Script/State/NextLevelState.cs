@@ -3,16 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting.FullSerializer;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class NextLevelState : BaseState
 {
     private GameControlSM gameControlSM;
     public NextLevelState(GameControlSM stateMachine) : base("NextLevelState", stateMachine){ gameControlSM = ((GameControlSM)stateMachine); }
+    private int currentLevelIndex;
     public override void Enter()
     {
         base.Enter();
         gameControlSM.nextLevelPanel.SetActive(true);
         gameControlSM.nextLevelBtn.onClick.AddListener(changeStateToInGame);
+        
 
         // Print the highest score.
     }
@@ -26,14 +29,29 @@ public class NextLevelState : BaseState
     public override void Exit()
     {
         base.Exit();
-       
-        //gameControlSM.startButton.transform.parent.gameObject.SetActive(false);
+        gameControlSM.nextLevelBtn.onClick.RemoveListener(changeStateToInGame);
+        gameControlSM.nextLevelPanel.SetActive(false);
     }
     void changeStateToInGame()
     {
-        //stateMachine.ChangeState(gameControlSM.inGameState);
-        //sahne deðiþtir
-        // gidilen o sahne seni geri bu sahneye göndersin
+        LoadNextLevel();
+    }
+    public void LoadNextLevel()
+    {
+        currentLevelIndex = PlayerPrefs.GetInt("LastCompletedLevel", 0);
+        int nextLevelIndex = currentLevelIndex + 1;
+        PlayerPrefs.SetInt("LastCompletedLevel", nextLevelIndex);
+        PlayerPrefs.Save();
+
+        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+        {
+            SceneManager.LoadScene(PlayerPrefs.GetInt("LastCompletedLevel", 0));
+        }
+        else
+        {
+            
+            Debug.Log("LastLevel!");
+        }
     }
 
 

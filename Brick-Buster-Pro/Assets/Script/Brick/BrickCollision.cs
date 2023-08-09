@@ -31,7 +31,7 @@ public class BrickCollision : MonoBehaviour
     void BrickIncrase(int pover)
     {
         birckHealth-=pover;
-        gameController.CollisionCounter();
+        gameController.CollisionCounter(pover);
         if (birckHealth <= 0)
         {
             gameController.RemoveBrick(gameObject);
