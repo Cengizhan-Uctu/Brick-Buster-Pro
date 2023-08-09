@@ -49,7 +49,7 @@ public class FirstShotState : BaseState
     }
     private void lineRender()
     {
-        Vector2 direction = gameControlSM.BallHolder.transform.up;
+        Vector2 direction = gameControlSM.BallHolder.transform.right;
         Vector2 origin = (Vector2)gameControlSM.BallHolder.transform.position + gameControlSM.lineOfset * direction;
         for (int i = 0; i < gameControlSM.lineRendererTotalBounce; i++)
         {
@@ -68,7 +68,7 @@ public class FirstShotState : BaseState
         if (Input.GetMouseButtonUp(0))
         {
             gameControlSM.firstBall.transform.parent = null;
-            gameControlSM.firstBall.GetComponent<Rigidbody2D>().AddForce(gameControlSM.BallHolder.transform.up * gameControlSM.ballForce, ForceMode2D.Impulse);
+            gameControlSM.firstBall.GetComponent<Rigidbody2D>().AddForce(gameControlSM.BallHolder.transform.right * gameControlSM.ballForce, ForceMode2D.Impulse);
             changeStateToMove();
         }
     }
