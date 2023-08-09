@@ -13,6 +13,7 @@ public class FirstShotState : BaseState
     public override void Enter()
     {
         base.Enter();
+        gameControlSM.lineRenderer.enabled = false;
         gameControlSM.lineRenderer.positionCount = gameControlSM.lineRendererTotalBounce;
     }
     public override void UpdateLogic()
@@ -60,7 +61,11 @@ public class FirstShotState : BaseState
     }
     void BallShot()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
+        {
+            gameControlSM.lineRenderer.enabled = true;
+        }
+        if (Input.GetMouseButtonUp(0))
         {
             gameControlSM.firstBall.transform.parent = null;
             gameControlSM.firstBall.GetComponent<Rigidbody2D>().AddForce(gameControlSM.BallHolder.transform.up * gameControlSM.ballForce, ForceMode2D.Impulse);
