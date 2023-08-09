@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,6 +23,7 @@ public class GameControlSM : StateMachine, IGameController
     [HideInInspector] public ActiveWallState activeWallState;
     [HideInInspector] public GameOverState gameOverState;
     [HideInInspector] public NextLevelState nextLevelState;
+    [HideInInspector] public PauseState pauseState;
 
 
     [Header("Bounce Slider")]
@@ -69,6 +71,10 @@ public class GameControlSM : StateMachine, IGameController
     [Header("NextLevel State")]
     public GameObject nextLevelPanel;
     public Button nextLevelBtn;
+    [Header("Pause State")]
+    public GameObject pausePanel;
+    public Button pauseBtn;
+    public Button resumeBtn;
     [Header("Special Abilities")]
     public Button threeBallBtn;
     public Button extensionPlatformBtn;
@@ -96,6 +102,7 @@ public class GameControlSM : StateMachine, IGameController
         activeWallState = new ActiveWallState(this);
         gameOverState = new GameOverState(this);
         nextLevelState = new NextLevelState(this);
+        pauseState = new PauseState(this);
     }
 
     protected override BaseState GetInitialState()
@@ -118,9 +125,14 @@ public class GameControlSM : StateMachine, IGameController
         return totalBallObjList;
     }
 
-    public void CollisionCounter()
+    public void CollisionCounter(int strong)
     {
-        bounceNumber++;
+        bounceNumber+=strong;
         bounceSlider.value = bounceNumber;
+    }
+
+    public void SetBallForce()
+    {
+        ballForce++;
     }
 }

@@ -17,6 +17,7 @@ public class MoveState : BaseState
         base.Enter();
         gameControlSM.totalBallObjList.Add(gameControlSM.firstBall);
         gameControlSM.bounceSlider.maxValue = gameControlSM.bounceSliderMaxValue;
+        gameControlSM.pauseBtn.onClick.AddListener(CheckPause);
     }
     public override void UpdateLogic()
     {
@@ -29,7 +30,7 @@ public class MoveState : BaseState
     public override void Exit()
     {
         base.Exit();
-
+        gameControlSM.pauseBtn.onClick.RemoveListener(CheckPause);
 
     }
 
@@ -92,6 +93,6 @@ public class MoveState : BaseState
     }
     void CheckPause()
     {
-        // butona týklanýrsa pause statesine geç 
+        stateMachine.ChangeState(gameControlSM.pauseState);
     }
 }
