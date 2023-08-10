@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using Zenject;
 
+
 public class BallController : MonoBehaviour
 {
     [SerializeField] Rigidbody2D ballRigidbody2D;
     [SerializeField] GameObject ballPrefab;
+    [SerializeField] AudioSource ballClip;
     public Vector2 lastBallVelocity;
     private IObjectPool objectPool;
     private IGameController gameController;
@@ -55,5 +57,9 @@ public class BallController : MonoBehaviour
         gameController.SetBallForce();
         ballRigidbody2D.velocity = Vector2.one*gameController.GetBallForce();
         ballPower += 1;
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        ballClip.Play();
     }
 }
