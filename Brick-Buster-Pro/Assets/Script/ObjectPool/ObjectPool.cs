@@ -14,7 +14,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
 {
     [SerializeField]
     private List<ObjectPoolEntry> poolEntries = new List<ObjectPoolEntry>();
-    private Dictionary<GameObject, Queue<GameObject>> objectPool = new Dictionary<GameObject, Queue<GameObject>>();
+    private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();
     private DiContainer container;
 
     [Inject]
@@ -25,7 +25,12 @@ public class ObjectPool : MonoBehaviour, IObjectPool
 
     private void Start()
     {
+        // InitializeObjectPool();
         InitializeObjectPool();
+        foreach (var kvp in objectPool)
+        {
+            Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value.ToString()}");
+        }
     }
 
     private void InitializeObjectPool()
@@ -34,17 +39,17 @@ public class ObjectPool : MonoBehaviour, IObjectPool
         {
             if (entry.prefab == null || entry.poolSize <= 0)
             {
-                Debug.LogError("Invalid prefab or pool size in ObjectPoolEntry.");
+                Debug.Log("Invalid prefab or pool size in ObjectPoolEntry.");
                 continue;
             }
 
-            if (objectPool.ContainsKey(entry.prefab))
+            if (objectPool.ContainsKey(entry.prefab.name))
             {
-                Debug.LogWarning("Prefab is already in the pool.");
+                Debug.Log("Prefab is already in the pool.");
                 continue;
             }
 
-            objectPool[entry.prefab] = new Queue<GameObject>();
+            objectPool[entry.prefab.name] = new Queue<GameObject>();
 
             for (int i = 0; i < entry.poolSize; i++)
             {
@@ -58,16 +63,17 @@ public class ObjectPool : MonoBehaviour, IObjectPool
     {
         GameObject obj = container.InstantiatePrefab(prefab, transform.position, Quaternion.identity, null);
         obj.SetActive(false);
-        obj.SetActive(false);
-        objectPool[prefab].Enqueue(obj);
+        obj.transform.parent = transform;
+        objectPool[prefab.name].Enqueue(obj);
+        obj.name = prefab.name;
         return obj;
     }
 
     public GameObject GetObjectFromPool(GameObject prefab)
     {
-        if (objectPool.ContainsKey(prefab) && objectPool[prefab].Count > 0)
+        if (objectPool.ContainsKey(prefab.name) && objectPool[prefab.name].Count > 0)
         {
-            GameObject pooledObject = objectPool[prefab].Dequeue();
+            GameObject pooledObject = objectPool[prefab.name].Dequeue();
             pooledObject.SetActive(true);
             return pooledObject;
         }
@@ -75,7 +81,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
         {
             
             CreateObjectInPool(prefab);
-            GameObject pooledObject = objectPool[prefab].Dequeue();
+            GameObject pooledObject = objectPool[prefab.name].Dequeue();
             pooledObject.SetActive(true);
             return pooledObject;
         }
@@ -83,10 +89,10 @@ public class ObjectPool : MonoBehaviour, IObjectPool
 
     public void ReturnObjectToPool(GameObject prefab, GameObject obj)
     {
-        if (objectPool.ContainsKey(prefab))
+        if (objectPool.ContainsKey(prefab.name))
         {
             obj.SetActive(false);
-            objectPool[prefab].Enqueue(obj);
+            objectPool[prefab.name].Enqueue(obj);
         }
         else
         {
@@ -103,7 +109,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
             return;
         }
 
-        if (objectPool.ContainsKey(prefab))
+        if (objectPool.ContainsKey(prefab.name))
         {
             for (int i = 0; i < amount; i++)
             {
@@ -122,4 +128,5 @@ public class ObjectPool : MonoBehaviour, IObjectPool
             Debug.Log("Prefab: " + entry.Key + ", Object Count: " + entry.Value.Count);
         }
     }
+   
 }
