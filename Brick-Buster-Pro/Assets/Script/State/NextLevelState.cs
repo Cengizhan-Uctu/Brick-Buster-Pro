@@ -13,6 +13,10 @@ public class NextLevelState : BaseState
     public override void Enter()
     {
         base.Enter();
+        foreach (var item in gameControlSM.totalBallObjList)
+        {
+            item.GetComponent<BallController>().StopBall();
+        }
         gameControlSM.nextLevelPanel.SetActive(true);
         gameControlSM.nextLevelBtn.onClick.AddListener(changeStateToInGame);
         

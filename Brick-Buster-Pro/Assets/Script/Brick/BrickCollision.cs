@@ -24,19 +24,19 @@ public class BrickCollision : MonoBehaviour
         if (collision.gameObject.TryGetComponent(out BallController ballController))
         {
 
-            BrickIncrase(ballController.ballPower);
+            BrickDecrease(ballController.ballPower);
 
         }
     }
-    void BrickIncrase(int pover)
+    public void BrickDecrease(int pover)
     {
-        birckHealth-=pover;
+        birckHealth -= pover;
         gameController.CollisionCounter(pover);
         if (birckHealth <= 0)
         {
             gameController.RemoveBrick(gameObject);
             gameObject.SetActive(false);
         }
-        brickHealthText.text= birckHealth.ToString();
+        brickHealthText.text = birckHealth.ToString();
     }
 }

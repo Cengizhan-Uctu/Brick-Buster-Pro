@@ -50,7 +50,7 @@ public class BallController : MonoBehaviour
     }
     public void StrongBall()
     {
-        ballPower += 2;
+        ballPower += 1;
     }
     public void FastAndStrongBall()
     {

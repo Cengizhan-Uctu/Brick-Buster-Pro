@@ -25,12 +25,9 @@ public class ObjectPool : MonoBehaviour, IObjectPool
 
     private void Start()
     {
-        // InitializeObjectPool();
+       
         InitializeObjectPool();
-        foreach (var kvp in objectPool)
-        {
-            Debug.Log($"Key: {kvp.Key}, Value: {kvp.Value.ToString()}");
-        }
+      
     }
 
     private void InitializeObjectPool()
