@@ -13,8 +13,11 @@ public class FirstShotState : BaseState
     public override void Enter()
     {
         base.Enter();
+        gameControlSM.firstBall.transform.position=gameControlSM.BallHolder.transform.position;
+        gameControlSM.firstBall.SetActive(true);
         gameControlSM.lineRenderer.enabled = false;
         gameControlSM.lineRenderer.positionCount = gameControlSM.lineRendererTotalBounce;
+        
     }
     public override void UpdateLogic()
     {

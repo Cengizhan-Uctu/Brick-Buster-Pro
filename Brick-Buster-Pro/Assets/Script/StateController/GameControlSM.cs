@@ -70,6 +70,7 @@ public class GameControlSM : StateMachine, IGameController
     [Header("GameOver State")]
     public GameObject gameoverPanel;
     public Button gameOverBtn;
+    public int healtCount;
     [Header("NextLevel State")]
     public GameObject nextLevelPanel;
     public Button nextLevelBtn;

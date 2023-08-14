@@ -165,6 +165,9 @@ MonoBehaviour:
   ballRigidbody2D: {fileID: 1988789616281127235}
   ballPrefab: {fileID: 3336558624574284483}
   ballClip: {fileID: 7517977739445180889}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 512
   lastBallVelocity: {x: 0, y: 0}
   ballPower: 1
 --- !u!82 &7517977739445180889

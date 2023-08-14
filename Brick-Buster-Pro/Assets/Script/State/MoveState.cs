@@ -18,7 +18,7 @@ public class MoveState : BaseState
         gameControlSM.totalBallObjList.Add(gameControlSM.firstBall);
         gameControlSM.bounceSlider.maxValue = gameControlSM.bounceSliderMaxValue;
         gameControlSM.pauseBtn.onClick.AddListener(CheckPause);
-        Debug.Log(gameControlSM.bounceSlider.maxValue);
+      
     }
     public override void UpdateLogic()
     {
@@ -26,7 +26,8 @@ public class MoveState : BaseState
 
         MovePlayer();
         CheckCollisionCount();
-
+        CheckBrickCount();
+        CheckGameOver();
     }
     public override void Exit()
     {
@@ -66,8 +67,7 @@ public class MoveState : BaseState
 
             gameControlSM.player.transform.position = new Vector3(clampedX, gameControlSM.player.transform.position.y, gameControlSM.player.transform.position.z);
         }
-        CheckBrickCount();
-        CheckGameOver();
+       
     }
     private bool IsObjectTouched(Vector3 mousePosition)
     {
