@@ -5301,10 +5301,10 @@ Transform:
   m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
-  - {fileID: 2003039782}
   - {fileID: 1145864377}
   - {fileID: 647100189}
   - {fileID: 1688894331}
+  - {fileID: 2003039782}
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -5583,7 +5583,7 @@ MonoBehaviour:
   brickListObjFistPos: {x: 0, y: 20, z: 0}
   brickListObjEndPoint: {x: 0, y: -1, z: 0}
   playerEndPoint: {x: 0, y: -4.5, z: 0}
-  lineRendererTotalBounce: 3
+  lineRendererTotalBounce: 2
   lineOfset: 0.01
   firstBall: {fileID: 689506607}
   ballForce: 3
@@ -5596,8 +5596,8 @@ MonoBehaviour:
   BallHolder: {fileID: 1945757680}
   moveSpeed: 5
   player: {fileID: 2027940948}
-  yourMinXValue: -4
-  yourMaxXValue: 4
+  minXValue: -4
+  maxXValue: 4
   totalBallObjList: []
   activeWall: {fileID: 2099779743}
   selectionPanel: {fileID: 805492624}
@@ -5617,6 +5617,7 @@ MonoBehaviour:
   - {x: -400, y: 0}
   gameoverPanel: {fileID: 1697145181}
   gameOverBtn: {fileID: 758606393}
+  healtCount: 2
   nextLevelPanel: {fileID: 733557942}
   nextLevelBtn: {fileID: 863374594}
   pausePanel: {fileID: 41094879}
@@ -6008,7 +6009,7 @@ GameObject:
   - component: {fileID: 2003039782}
   - component: {fileID: 2003039784}
   - component: {fileID: 2003039783}
-  m_Layer: 6
+  m_Layer: 9
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6023,8 +6024,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2003039781}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.80415344, y: -5.7, z: 0.09933148}
-  m_LocalScale: {x: 5, y: 1.6, z: 1}
+  m_LocalPosition: {x: 0.7933, y: -6.1206, z: 0.09933148}
+  m_LocalScale: {x: 4.8703265, y: 0.6287113, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1762349815}

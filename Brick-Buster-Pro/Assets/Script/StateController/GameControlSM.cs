@@ -55,8 +55,8 @@ public class GameControlSM : StateMachine, IGameController
     [Header("MoveState")]
     public float moveSpeed = 5f;
     public GameObject player;
-    public float yourMinXValue;
-    public float yourMaxXValue;
+    public float minXValue;
+    public float maxXValue;
 
     [Header("Pause State")]
     public List<GameObject> totalBallObjList = new List<GameObject>();

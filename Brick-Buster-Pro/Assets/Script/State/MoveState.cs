@@ -11,6 +11,7 @@ public class MoveState : BaseState
     private GameControlSM gameControlSM;
     private bool isDragging = false;
     private Vector3 offset;
+    private Vector3 dragStartPosition;
     public MoveState(GameControlSM stateMachine) : base("MoveState", stateMachine) { gameControlSM = ((GameControlSM)stateMachine); }
     public override void Enter()
     {
@@ -40,34 +41,25 @@ public class MoveState : BaseState
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.y = gameControlSM.player.transform.position.y;
-            mousePosition.z = gameControlSM.player.transform.position.z;
-
-            if (IsObjectTouched(mousePosition))
-            {
-                isDragging = true;
-                offset = gameControlSM.player.transform.position - mousePosition;
-            }
+            dragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dragStartPosition.y = gameControlSM.player.transform.position.y; // Sadece y eksenindeki deðeri koru
+            dragStartPosition.z = gameControlSM.player.transform.position.z;
         }
-        else if (Input.GetMouseButtonUp(0))
+
+        if (Input.GetMouseButton(0))
         {
-            isDragging = false;
+            Vector3 currentDragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            currentDragPosition.y = gameControlSM.player.transform.position.y; // Sadece y eksenindeki deðeri koru
+            currentDragPosition.z = gameControlSM.player.transform.position.z;
+
+            Vector3 dragDelta = currentDragPosition - dragStartPosition;
+            Vector3 newPosition = gameControlSM.player.transform.position + dragDelta;
+
+            newPosition.x = Mathf.Clamp(newPosition.x, gameControlSM.minXValue, gameControlSM.maxXValue);
+
+            gameControlSM.player.transform.position = Vector3.Lerp(gameControlSM.player.transform.position, newPosition, gameControlSM.moveSpeed * Time.deltaTime);
         }
 
-        if (isDragging)
-        {
-            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            mousePosition.y = gameControlSM.player.transform.position.y;
-            mousePosition.z = gameControlSM.player.transform.position.z;
-
-            float minX = gameControlSM.yourMinXValue; 
-            float maxX = gameControlSM.yourMaxXValue;
-            float clampedX = Mathf.Clamp(mousePosition.x + offset.x, minX, maxX);
-
-            gameControlSM.player.transform.position = new Vector3(clampedX, gameControlSM.player.transform.position.y, gameControlSM.player.transform.position.z);
-        }
-       
     }
     private bool IsObjectTouched(Vector3 mousePosition)
     {
