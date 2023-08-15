@@ -10,8 +10,8 @@ public class GameInstaller : MonoInstaller
     public ObjectPool objectPool;
     public override void InstallBindings()
     {
-        Container.Bind<IGameController>().To<GameControlSM>().FromComponentInNewPrefab(gameControlSMPrefab).AsCached();
+        Container.Bind<IGameController>().To<GameControlSM>().FromComponentInHierarchy(gameControlSMPrefab).AsCached();
        
-        Container.Bind<IObjectPool>().To<ObjectPool>().FromComponentInNewPrefab(objectPool).AsCached();
+        Container.Bind<IObjectPool>().To<ObjectPool>().FromComponentInHierarchy(objectPool).AsCached();
     }
 }
