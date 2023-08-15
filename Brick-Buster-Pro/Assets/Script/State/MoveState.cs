@@ -19,6 +19,7 @@ public class MoveState : BaseState
         gameControlSM.totalBallObjList.Add(gameControlSM.firstBall);
         gameControlSM.bounceSlider.maxValue = gameControlSM.bounceSliderMaxValue;
         gameControlSM.pauseBtn.onClick.AddListener(CheckPause);
+        gameControlSM.playerIsMove = true;
       
     }
     public override void UpdateLogic()
@@ -34,38 +35,38 @@ public class MoveState : BaseState
     {
         base.Exit();
         gameControlSM.pauseBtn.onClick.RemoveListener(CheckPause);
-
+        gameControlSM.SetIsMove(false);
+        Debug.Log(gameControlSM.playerIsMove);
     }
 
     private void MovePlayer()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Debug.Log(gameControlSM.playerIsMove.ToString());
+        if (gameControlSM.playerIsMove == true)
         {
-            dragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            dragStartPosition.y = gameControlSM.player.transform.position.y; // Sadece y eksenindeki deðeri koru
-            dragStartPosition.z = gameControlSM.player.transform.position.z;
+            if (Input.GetMouseButtonDown(0))
+            {
+                dragStartPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                dragStartPosition.y = gameControlSM.player.transform.position.y; // Sadece y eksenindeki deðeri koru
+                dragStartPosition.z = gameControlSM.player.transform.position.z;
+            }
+
+            if (Input.GetMouseButton(0))
+            {
+                Vector3 currentDragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                currentDragPosition.y = gameControlSM.player.transform.position.y; // Sadece y eksenindeki deðeri koru
+                currentDragPosition.z = gameControlSM.player.transform.position.z;
+
+                Vector3 dragDelta = currentDragPosition - dragStartPosition;
+                Vector3 newPosition = gameControlSM.player.transform.position + dragDelta;
+
+                newPosition.x = Mathf.Clamp(newPosition.x, gameControlSM.minXValue, gameControlSM.maxXValue);
+
+                gameControlSM.player.transform.position = Vector3.Lerp(gameControlSM.player.transform.position, newPosition, gameControlSM.moveSpeed * Time.deltaTime);
+            }
         }
+       
 
-        if (Input.GetMouseButton(0))
-        {
-            Vector3 currentDragPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            currentDragPosition.y = gameControlSM.player.transform.position.y; // Sadece y eksenindeki deðeri koru
-            currentDragPosition.z = gameControlSM.player.transform.position.z;
-
-            Vector3 dragDelta = currentDragPosition - dragStartPosition;
-            Vector3 newPosition = gameControlSM.player.transform.position + dragDelta;
-
-            newPosition.x = Mathf.Clamp(newPosition.x, gameControlSM.minXValue, gameControlSM.maxXValue);
-
-            gameControlSM.player.transform.position = Vector3.Lerp(gameControlSM.player.transform.position, newPosition, gameControlSM.moveSpeed * Time.deltaTime);
-        }
-
-    }
-    private bool IsObjectTouched(Vector3 mousePosition)
-    {
-        float distanceThreshold = 0.5f;
-        float distance = Vector3.Distance(gameControlSM.player.transform.position, mousePosition);
-        return distance < distanceThreshold;
     }
     void CheckBrickCount()
     {

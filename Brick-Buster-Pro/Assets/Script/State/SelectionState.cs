@@ -21,6 +21,7 @@ public class SelectionState : BaseState
         gameControlSM.selectionPanel.SetActive(true);
         GetCard();
         AddListenerBtn();
+       // gameControlSM.SetIsMove(false);
     }
     public override void UpdateLogic()
     {
@@ -34,7 +35,7 @@ public class SelectionState : BaseState
         base.Exit();
         Debug.Log("Exit SelectionState");
         RemoveListenerBtn();
-
+       // gameControlSM.SetIsMove(true);
     }
 
     void StopBall()

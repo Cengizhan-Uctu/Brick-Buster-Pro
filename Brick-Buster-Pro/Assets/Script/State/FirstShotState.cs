@@ -17,7 +17,7 @@ public class FirstShotState : BaseState
         gameControlSM.firstBall.SetActive(true);
         gameControlSM.lineRenderer.enabled = false;
         gameControlSM.lineRenderer.positionCount = gameControlSM.lineRendererTotalBounce;
-        
+        gameControlSM.SetIsMove(false);
     }
     public override void UpdateLogic()
     {
@@ -32,8 +32,8 @@ public class FirstShotState : BaseState
     {
         base.Exit();
         gameControlSM.lineRenderer.enabled = false;
-
-
+        //gameControlSM.SetIsMove(true);
+        
     }
     void changeStateToMove()
     {
@@ -72,6 +72,7 @@ public class FirstShotState : BaseState
         {
             gameControlSM.firstBall.transform.parent = null;
             gameControlSM.firstBall.GetComponent<Rigidbody2D>().AddForce(gameControlSM.BallHolder.transform.right * gameControlSM.ballForce, ForceMode2D.Impulse);
+            
             changeStateToMove();
         }
     }

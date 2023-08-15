@@ -17,12 +17,13 @@ public class GameOverState : BaseState
             gameControlSM.gameoverPanel.SetActive(true);
             gameControlSM.gameOverBtn.onClick.AddListener(changeStateToInGame);
             gameControlSM.healtCount--;
+            gameControlSM.selectionPanel.SetActive(false);
         }
         else
         {
             gameControlSM.healtCount--;
         }
-        Debug.Log(gameControlSM.healtCount);
+     
     }
   
 

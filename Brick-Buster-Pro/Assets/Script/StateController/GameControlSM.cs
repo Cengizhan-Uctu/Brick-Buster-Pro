@@ -55,6 +55,7 @@ public class GameControlSM : StateMachine, IGameController
     [Header("MoveState")]
     public float moveSpeed = 5f;
     public GameObject player;
+    public bool playerIsMove;
     public float minXValue;
     public float maxXValue;
 
@@ -115,7 +116,7 @@ public class GameControlSM : StateMachine, IGameController
     public void RemoveBrick(GameObject brick)
     {
         brickList.Remove(brick);
-       
+
     }
 
     public float GetBallForce()
@@ -130,12 +131,16 @@ public class GameControlSM : StateMachine, IGameController
 
     public void CollisionCounter(int strong)
     {
-        bounceNumber+=strong;
+        bounceNumber += strong;
         bounceSlider.value = bounceNumber;
     }
 
     public void SetBallForce()
     {
         ballForce++;
+    }
+    public void SetIsMove(bool isMove)
+    {
+        playerIsMove = isMove;
     }
 }
