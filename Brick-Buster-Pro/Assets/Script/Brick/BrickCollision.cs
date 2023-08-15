@@ -9,6 +9,7 @@ public class BrickCollision : MonoBehaviour
     private IGameController gameController;
     [SerializeField] int birckHealth;
     [SerializeField] TMP_Text brickHealthText;
+    [SerializeField] ParticleSystem brickBlodEffect;
     [Inject]
     public void SetGameController(IGameController gameController)
     {
@@ -34,7 +35,11 @@ public class BrickCollision : MonoBehaviour
         gameController.CollisionCounter(pover);
         if (birckHealth <= 0)
         {
+
+            brickBlodEffect.Play();
+            brickBlodEffect.transform.parent=null;
             gameController.RemoveBrick(gameObject);
+           
             gameObject.SetActive(false);
         }
         brickHealthText.text = birckHealth.ToString();
