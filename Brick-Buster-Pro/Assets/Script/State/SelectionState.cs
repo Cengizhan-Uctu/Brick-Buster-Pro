@@ -113,7 +113,7 @@ public class SelectionState : BaseState
     }
     void ChangeStateToExtraLife()
     {
-
+       
         stateMachine.ChangeState(gameControlSM.extraLifeState);
     }
     void AddListenerBtn()
@@ -150,6 +150,6 @@ public class SelectionState : BaseState
         gameControlSM.strongBallBtn.gameObject.SetActive(false);
         gameControlSM.fastStrongBallBtn.gameObject.SetActive(false);
         gameControlSM.activeBallBtn.gameObject.SetActive(false);
-        gameControlSM.extraLifeStateBtn.gameObject.SetActive(false);
+        gameControlSM.extraLifeBtn.gameObject.SetActive(false);
     }
 }

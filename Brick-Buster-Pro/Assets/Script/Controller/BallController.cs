@@ -30,6 +30,7 @@ public class BallController : MonoBehaviour
             GameObject newBall = objectPool.GetObjectFromPool(ballPrefab);
             gameController.GetBallList().Add(newBall);
             newBall.transform.position = transform.position;
+            lastBallVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
             if (newBall.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
             {
                 newBall.GetComponent<Rigidbody2D>().AddForce(transform.position * gameController.GetBallForce(), ForceMode2D.Impulse);
@@ -40,7 +41,7 @@ public class BallController : MonoBehaviour
     public void StopBall()
     {
 
-        lastBallVelocity = new Vector2(transform.position.x, transform.position.y);
+        lastBallVelocity = gameObject.GetComponent<Rigidbody2D>().velocity;
         if (lastBallVelocity != Vector2.zero)
         {
             ballRigidbody2D.velocity = Vector2.zero;
@@ -50,7 +51,7 @@ public class BallController : MonoBehaviour
     public void KeepMoving()
     {
 
-        if (lastBallVelocity != Vector2.zero) { ballRigidbody2D.velocity = lastBallVelocity * gameController.GetBallForce(); }
+        if (lastBallVelocity != Vector2.zero) { ballRigidbody2D.velocity = lastBallVelocity; }
 
     }
     public void StrongBall()

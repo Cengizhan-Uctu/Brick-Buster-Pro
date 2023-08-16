@@ -26,8 +26,13 @@ public class ExtraLifeState : BaseState
 
     public override void Exit()
     {
-    
-       
+
+        gameControlSM.extraLifeBtn.gameObject.SetActive(false);
+        gameControlSM.selectionPanel.SetActive(false);
+        for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)
+        {
+            gameControlSM.totalBallObjList[i].gameObject.GetComponent<BallController>().KeepMoving();
+        }
     }
     void ChangeStateToInGame()
     {

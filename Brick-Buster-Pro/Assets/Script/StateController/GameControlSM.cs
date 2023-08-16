@@ -90,7 +90,7 @@ public class GameControlSM : StateMachine, IGameController
     public Button strongBallBtn;
     public Button fastStrongBallBtn;
     public Button activeBallBtn;
-    public Button extraLife;
+    public Button extraLifeBtn;
     private void Awake()
     {
 
