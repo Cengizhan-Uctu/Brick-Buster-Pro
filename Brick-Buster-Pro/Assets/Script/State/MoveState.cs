@@ -16,7 +16,8 @@ public class MoveState : BaseState
     public override void Enter()
     {
         base.Enter();
-        gameControlSM.totalBallObjList.Add(gameControlSM.firstBall);
+        if (gameControlSM.totalBallObjList.Count==0) { gameControlSM.totalBallObjList.Add(gameControlSM.firstBall); }
+       
         gameControlSM.bounceSlider.maxValue = gameControlSM.bounceSliderMaxValue;
         gameControlSM.pauseBtn.onClick.AddListener(CheckPause);
         gameControlSM.playerIsMove = true;
@@ -41,7 +42,7 @@ public class MoveState : BaseState
 
     private void MovePlayer()
     {
-        // Debug.Log(gameControlSM.playerIsMove.ToString());
+       
         if (gameControlSM.playerIsMove == true)
         {
             if (Input.GetMouseButtonDown(0))
@@ -58,11 +59,12 @@ public class MoveState : BaseState
                 currentDragPosition.z = gameControlSM.player.transform.position.z;
 
                 Vector3 dragDelta = currentDragPosition - dragStartPosition;
-                Vector3 newPosition = gameControlSM.player.transform.position + dragDelta;
+               
+                Vector3 newPosition = gameControlSM.player.transform.position + dragDelta.normalized*Time.deltaTime*gameControlSM.moveSpeed;
 
                 newPosition.x = Mathf.Clamp(newPosition.x, gameControlSM.minXValue, gameControlSM.maxXValue);
 
-                gameControlSM.player.transform.position = Vector3.Lerp(gameControlSM.player.transform.position, newPosition, gameControlSM.moveSpeed * Time.deltaTime);
+                gameControlSM.player.transform.position = newPosition;
             }
         }
        

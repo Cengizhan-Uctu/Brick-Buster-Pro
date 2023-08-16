@@ -30,8 +30,11 @@ public class BallController : MonoBehaviour
             GameObject newBall = objectPool.GetObjectFromPool(ballPrefab);
             gameController.GetBallList().Add(newBall);
             newBall.transform.position = transform.position;
-
-            newBall.GetComponent<Rigidbody2D>().AddForce(transform.position * gameController.GetBallForce(), ForceMode2D.Impulse);
+            if (newBall.GetComponent<Rigidbody2D>().velocity == Vector2.zero)
+            {
+                newBall.GetComponent<Rigidbody2D>().AddForce(transform.position * gameController.GetBallForce(), ForceMode2D.Impulse);
+            }
+            
         }
     }
     public void StopBall()
