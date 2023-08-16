@@ -12,16 +12,16 @@ public class GameOverState : BaseState
     public override void Enter()
     {
         base.Enter();
-        if (gameControlSM.healtCount == 0)
+        if (gameControlSM.playerLife == 0)
         {
             gameControlSM.gameoverPanel.SetActive(true);
             gameControlSM.gameOverBtn.onClick.AddListener(changeStateToInGame);
-            gameControlSM.healtCount--;
+            gameControlSM.playerLife--;
             gameControlSM.selectionPanel.SetActive(false);
         }
         else
         {
-            gameControlSM.healtCount--;
+            gameControlSM.playerLife--;
         }
      
     }
@@ -30,7 +30,7 @@ public class GameOverState : BaseState
     public override void Exit()
     {
         base.Exit();
-        if (gameControlSM.healtCount == 0)
+        if (gameControlSM.playerLife == 0)
         {
             gameControlSM.gameOverBtn.onClick.RemoveListener(changeStateToInGame);
             gameControlSM.gameoverPanel.SetActive(false);
@@ -40,7 +40,7 @@ public class GameOverState : BaseState
     public override void UpdateLogic()
     {
         base.UpdateLogic();
-        if (gameControlSM.healtCount >= 0)
+        if (gameControlSM.playerLife >= 0)
         {
             stateMachine.ChangeState(gameControlSM.firstShotState);
         }

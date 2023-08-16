@@ -24,6 +24,7 @@ public class GameControlSM : StateMachine, IGameController
     [HideInInspector] public GameOverState gameOverState;
     [HideInInspector] public NextLevelState nextLevelState;
     [HideInInspector] public PauseState pauseState;
+    [HideInInspector] public ExtraLifeState extraLifeState;
 
 
     [Header("Bounce Slider")]
@@ -71,7 +72,7 @@ public class GameControlSM : StateMachine, IGameController
     [Header("GameOver State")]
     public GameObject gameoverPanel;
     public Button gameOverBtn;
-    public int healtCount;
+    public int playerLife;
     [Header("NextLevel State")]
     public GameObject nextLevelPanel;
     public Button nextLevelBtn;
@@ -79,6 +80,7 @@ public class GameControlSM : StateMachine, IGameController
     public GameObject pausePanel;
     public Button pauseBtn;
     public Button resumeBtn;
+   
     [Header("Special Abilities")]
     public Button threeBallBtn;
     public Button extensionPlatformBtn;
@@ -88,6 +90,7 @@ public class GameControlSM : StateMachine, IGameController
     public Button strongBallBtn;
     public Button fastStrongBallBtn;
     public Button activeBallBtn;
+    public Button extraLife;
     private void Awake()
     {
 
@@ -107,6 +110,7 @@ public class GameControlSM : StateMachine, IGameController
         gameOverState = new GameOverState(this);
         nextLevelState = new NextLevelState(this);
         pauseState = new PauseState(this);
+        extraLifeState = new ExtraLifeState(this);
     }
 
     protected override BaseState GetInitialState()

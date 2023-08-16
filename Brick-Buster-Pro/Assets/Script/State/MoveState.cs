@@ -9,8 +9,6 @@ using static UnityEngine.RuleTile.TilingRuleOutput;
 public class MoveState : BaseState
 {
     private GameControlSM gameControlSM;
-    private bool isDragging = false;
-    private Vector3 offset;
     private Vector3 dragStartPosition;
     public MoveState(GameControlSM stateMachine) : base("MoveState", stateMachine) { gameControlSM = ((GameControlSM)stateMachine); }
     public override void Enter()
@@ -37,7 +35,7 @@ public class MoveState : BaseState
         base.Exit();
         gameControlSM.pauseBtn.onClick.RemoveListener(CheckPause);
         gameControlSM.SetIsMove(false);
-        Debug.Log(gameControlSM.playerIsMove);
+      
     }
 
     private void MovePlayer()

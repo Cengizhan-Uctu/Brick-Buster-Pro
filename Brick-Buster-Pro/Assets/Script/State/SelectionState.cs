@@ -13,7 +13,7 @@ public class SelectionState : BaseState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter SelectionState");
+       
         gameControlSM.bounceNumber = 0;
         gameControlSM.bounceSlider.value = 0;
         SetActiveFalseBtn();
@@ -33,7 +33,7 @@ public class SelectionState : BaseState
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Exit SelectionState");
+      
         RemoveListenerBtn();
        // gameControlSM.SetIsMove(true);
     }
@@ -111,6 +111,11 @@ public class SelectionState : BaseState
 
         stateMachine.ChangeState(gameControlSM.activeWallState);
     }
+    void ChangeStateToExtraLife()
+    {
+
+        stateMachine.ChangeState(gameControlSM.extraLifeState);
+    }
     void AddListenerBtn()
     {
         gameControlSM.threeBallBtn.onClick.AddListener(ChangeStateToTreeBall);
@@ -121,6 +126,7 @@ public class SelectionState : BaseState
         gameControlSM.strongBallBtn.onClick.AddListener(ChangeStateToStronglBallState);
         gameControlSM.fastStrongBallBtn.onClick.AddListener(ChangeStateToFastStronglBallState);
         gameControlSM.activeBallBtn.onClick.AddListener(ChangeStateToActiveWallState);
+        gameControlSM.extraLifeBtn.onClick.AddListener(ChangeStateToExtraLife);
     }
     void RemoveListenerBtn()
     {
@@ -132,6 +138,7 @@ public class SelectionState : BaseState
         gameControlSM.strongBallBtn.onClick.RemoveListener(ChangeStateToStronglBallState);
         gameControlSM.fastStrongBallBtn.onClick.RemoveListener(ChangeStateToFastStronglBallState);
         gameControlSM.activeBallBtn.onClick.RemoveListener(ChangeStateToActiveWallState);
+        gameControlSM.extraLifeBtn.onClick.RemoveListener(ChangeStateToExtraLife);
     }
     void SetActiveFalseBtn()
     {
@@ -143,5 +150,6 @@ public class SelectionState : BaseState
         gameControlSM.strongBallBtn.gameObject.SetActive(false);
         gameControlSM.fastStrongBallBtn.gameObject.SetActive(false);
         gameControlSM.activeBallBtn.gameObject.SetActive(false);
+        gameControlSM.extraLifeStateBtn.gameObject.SetActive(false);
     }
 }

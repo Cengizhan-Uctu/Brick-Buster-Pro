@@ -13,7 +13,7 @@ public class ThreeBallState : BaseState
     public override void Enter()
     {
         base.Enter();
-        Debug.Log("Enter ThreeBallState");
+       
         activeBallCount = gameControlSM.totalBallObjList.Count ;
         for (int i = 0; i < activeBallCount; i++)
         {
@@ -32,7 +32,7 @@ public class ThreeBallState : BaseState
     public override void Exit()
     {
         base.Exit();
-        Debug.Log("Exit ThreeBallState");
+       
         gameControlSM.threeBallBtn.gameObject.SetActive(false);
         gameControlSM.selectionPanel.SetActive(false);
         for (int i = 0; i < gameControlSM.totalBallObjList.Count; i++)
