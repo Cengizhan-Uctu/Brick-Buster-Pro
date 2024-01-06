@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
+
 
 [Serializable]
 public class ObjectPoolEntry
@@ -10,26 +10,28 @@ public class ObjectPoolEntry
     public int poolSize;
 }
 
-public class ObjectPool : MonoBehaviour, IObjectPool
+public class ObjectPool : MonoBehaviour
 {
+    private static ObjectPool instance;
     [SerializeField]
     private List<ObjectPoolEntry> poolEntries = new List<ObjectPoolEntry>();
     private Dictionary<string, Queue<GameObject>> objectPool = new Dictionary<string, Queue<GameObject>>();
-    private DiContainer container;
+ 
 
-    [Inject]
-    public void Construct(DiContainer container)
-    {
-        this.container = container;
-    }
 
     private void Start()
     {
-       
+        instance = this;
         InitializeObjectPool();
       
     }
-
+    public static ObjectPool Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
     private void InitializeObjectPool()
     {
         foreach (var entry in poolEntries)
@@ -58,7 +60,7 @@ public class ObjectPool : MonoBehaviour, IObjectPool
 
     private GameObject CreateObjectInPool(GameObject prefab)
     {
-        GameObject obj = container.InstantiatePrefab(prefab, transform.position, Quaternion.identity, null);
+        GameObject obj =Instantiate(prefab, transform.position, Quaternion.identity, null);
         obj.SetActive(false);
         obj.transform.parent = transform;
         objectPool[prefab.name].Enqueue(obj);

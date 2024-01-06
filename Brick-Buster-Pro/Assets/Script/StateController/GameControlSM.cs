@@ -5,8 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class GameControlSM : StateMachine, IGameController
+public class GameControlSM : StateMachine
 {
+    private static GameControlSM instance;
 
     [HideInInspector] public MainMenuState mainMenuState;
     [HideInInspector] public FirstShotState firstShotState;
@@ -91,9 +92,10 @@ public class GameControlSM : StateMachine, IGameController
     public Button fastStrongBallBtn;
     public Button activeBallBtn;
     public Button extraLifeBtn;
+
     private void Awake()
     {
-
+        instance = this;
         mainMenuState = new MainMenuState(this);
         firstShotState = new FirstShotState(this);
         moveState = new MoveState(this);
@@ -112,7 +114,14 @@ public class GameControlSM : StateMachine, IGameController
         pauseState = new PauseState(this);
         extraLifeState = new ExtraLifeState(this);
     }
-
+   
+    public static GameControlSM Instance
+    {
+        get
+        {        
+            return instance;
+        }
+    }
     protected override BaseState GetInitialState()
     {
         return loadLevelState;
@@ -147,4 +156,5 @@ public class GameControlSM : StateMachine, IGameController
     {
         playerIsMove = isMove;
     }
+   
 }

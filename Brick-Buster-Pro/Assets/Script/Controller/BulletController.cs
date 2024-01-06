@@ -1,19 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
+
 
 public class BulletController : MonoBehaviour
 {
     public float speed = 5f;
     [SerializeField] private GameObject prefabObj;
-    private IObjectPool objPool;
+   
     
-    [Inject]
-    public void SetGameController(IObjectPool objPool)
-    {
-        this.objPool = objPool;
-    }
+  
 
     private void Update()
     {
@@ -24,7 +20,7 @@ public class BulletController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent(out BrickCollision brickCollision)) { brickCollision.BrickDecrease(1); }
-        objPool.ReturnObjectToPool(prefabObj,gameObject);
+        ObjectPool.Instance.ReturnObjectToPool(prefabObj,gameObject);
        
     }
 }

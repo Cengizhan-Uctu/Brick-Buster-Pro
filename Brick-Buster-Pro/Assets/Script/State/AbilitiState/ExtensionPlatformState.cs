@@ -1,11 +1,6 @@
 using DG.Tweening;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Diagnostics;
-using Unity.VisualScripting.FullSerializer;
-using UnityEngine;
-using Zenject.SpaceFighter;
+
+
 using static UnityEditor.Progress;
 
 public class ExtensionPlatformState : BaseState

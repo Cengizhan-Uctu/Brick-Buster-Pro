@@ -1,23 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Zenject;
 using TMPro;
 
 public class BrickCollision : MonoBehaviour
 {
-    private IGameController gameController;
+   
     [SerializeField] int birckHealth;
     [SerializeField] TMP_Text brickHealthText;
     [SerializeField] ParticleSystem brickBlodEffect;
-    [Inject]
-    public void SetGameController(IGameController gameController)
-    {
-        this.gameController = gameController;
-    }
+   
     private void Start()
     {
         brickHealthText.text = birckHealth.ToString();
+       
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -32,13 +28,13 @@ public class BrickCollision : MonoBehaviour
     public void BrickDecrease(int pover)
     {
         birckHealth -= pover;
-        gameController.CollisionCounter(pover);
+        GameControlSM.Instance .CollisionCounter(pover);
         if (birckHealth <= 0)
         {
 
             brickBlodEffect.Play();
             brickBlodEffect.transform.parent=null;
-            gameController.RemoveBrick(gameObject);
+            GameControlSM.Instance.RemoveBrick(gameObject);
            
             gameObject.SetActive(false);
         }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using Zenject;
+using UnityEditor;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,14 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private GameObject gunObjLeft;
     [SerializeField] private GameObject gunObjRight;
     [SerializeField] private GameObject poolPrefab;
-    private IObjectPool objPool;
+    
     private bool isFire = false;
 
-    [Inject]
-    public void SetGameController(IObjectPool objPool)
-    {
-        this.objPool = objPool;
-    }
+  
     public void ActiveGun()
     {
         
@@ -38,8 +34,8 @@ public class PlayerController : MonoBehaviour
        
         while (isFire == true)
         {
-            GameObject bulletLeft = objPool.GetObjectFromPool(poolPrefab);
-            GameObject bulletRight = objPool.GetObjectFromPool(poolPrefab);
+            GameObject bulletLeft = ObjectPool.Instance.GetObjectFromPool(poolPrefab);
+            GameObject bulletRight = ObjectPool.Instance.GetObjectFromPool(poolPrefab);
             bulletLeft.transform.position = gunObjLeft.transform.position;
             bulletRight.transform.position = gunObjRight.transform.position;
             yield return new WaitForSeconds(fireRate);
